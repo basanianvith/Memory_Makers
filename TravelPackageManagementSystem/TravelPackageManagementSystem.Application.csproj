@@ -13,8 +13,4 @@
     <None Remove="Controllers\NewFolder\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\images\" />
-  </ItemGroup>
-
 </Project>

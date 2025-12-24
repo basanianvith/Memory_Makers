@@ -15,6 +15,21 @@
     <EmbeddedResource Remove="Views\NewFolder\**" />
     <None Remove="Controllers\NewFolder\**" />
     <None Remove="Views\NewFolder\**" />
+    <Compile Remove="Views\LandingPage\**" />
+    <Compile Remove="wwwroot\lib\images\**" />
+    <Content Remove="Controllers\NewFolder\**" />
+    <Content Remove="Views\LandingPage\**" />
+    <Content Remove="wwwroot\lib\images\**" />
+    <EmbeddedResource Remove="Controllers\NewFolder\**" />
+    <EmbeddedResource Remove="Views\LandingPage\**" />
+    <EmbeddedResource Remove="wwwroot\lib\images\**" />
+    <None Remove="Controllers\NewFolder\**" />
+    <None Remove="Views\LandingPage\**" />
+    <None Remove="wwwroot\lib\images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\LandingPage.cshtml" />
   </ItemGroup>
 
 </Project>

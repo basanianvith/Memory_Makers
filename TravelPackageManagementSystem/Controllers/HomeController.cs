@@ -23,6 +23,7 @@ namespace TravelPackageManagementSystem.Controllers
         }
 
         public IActionResult Trending()
+        public IActionResult Hero()
         {
             return View();
         }

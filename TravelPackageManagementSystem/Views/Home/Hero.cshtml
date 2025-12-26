@@ -1,111 +1,192 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@* Updated Hero.cshtml - Unified Version *@
 @{
+    Layout = "_Layout"; // Ensures it uses your layout
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Travel Booking</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<header class="header-wrapper">
+    <div class="overlay"></div>
 
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <div class="top-bar">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+            <div class="top-left">
+                <i class="fa-solid fa-phone"></i> (+91) 9523267360
+                <span class="ms-3"><i class="fa-solid fa-envelope"></i> memorymakers@gmail.com</span>
+            </div>
+            <div class="top-right">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter mx-3"></i>
+                <i class="fab fa-linkedin-in"></i>
+                <span class="ms-4 text-white"
+                      style="cursor: pointer;"
+                      data-bs-toggle="modal"
+                      data-bs-target="#authModal">
+                    Sign in / Sign up
+                </span>
+            </div>
+        </div>
+    </div>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="site.css">
-</head>
-<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fa-solid fa-paper-plane"></i> Memory Makers
+            </a>
 
-    <!-- ================= HEADER (IMAGE AREA) ================= -->
-    <header class="header-wrapper">
-        <div class="overlay"></div>
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Holidays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cabs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Buses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cruise</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <!-- TOP BAR -->
-        <div class="top-bar">
-            <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-                <div class="top-left">
-                    <i class="fa-solid fa-phone"></i> (+91) 9523267360
-                    <span class="ms-3"><i class="fa-solid fa-envelope"></i> memorymakers@gmail.com</span>
+    <div class="container-fluid hero-content text-center">
+        <h1>Let's Travel The World Together!</h1>
+        <p>Find awesome flights, hotels, holidays, cabs, buses and cruise</p>
+
+        <div class="hero-tabs">
+            <span class="active"><i class="fa-solid fa-plane"></i> Flights</span>
+            <span><i class="fa-solid fa-hotel"></i> Hotels</span>
+            <span><i class="fa-solid fa-umbrella-beach"></i> Holidays</span>
+        </div>
+    </div>
+</header>
+
+<section class="search-panel" style="width: 100%">
+    <div class="container">
+        <div class="search-box shadow-lg">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-3">
+                    <label>Destination</label>
+                    <input type="text" class="form-control" placeholder="Where are you going?">
                 </div>
-                <div class="top-right">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter mx-3"></i>
-                    <i class="fab fa-linkedin-in"></i>
-                    <span class="ms-4">Sign in / Sign up</span>
+
+                <div class="col-md-3">
+                    <label>Departure - Return</label>
+                    <input type="text" class="form-control" placeholder="Jul 07 - Aug 25">
+                </div>
+
+                <div class="col-md-3">
+                    <label>Travellers</label>
+                    <input type="text" class="form-control" placeholder="1 Adult - 1 Child">
+                </div>
+
+                <div class="col-md-3 d-grid">
+                    <button class="btn btn-primary btn-lg mt-4">Search</button>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid px-4">
-                <a class="navbar-brand fw-bold" href="#">
-                    <i class="fa-solid fa-paper-plane"></i> Memory Makers
-                </a>
-
-                <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav gap-4">
-                        <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Hotels</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Holidays</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Cabs</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Buses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Cruise</a></li>
-                    </ul>
+<div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 20px; top: 20px; z-index: 100; filter: invert(1);"></button>
+            <div class="modal-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <h2 id="modalTitle" class="auth-title fw-bold">Create an Account</h2>
+                    <p id="modalSubtitle" class="auth-subtitle">Join Memory Makers to start your journey.</p>
                 </div>
-            </div>
-        </nav>
 
-        <!-- HERO CONTENT -->
-        <div class="hero-content text-center">
-            <h1>Let's Travel The World Together!</h1>
-            <p>Find awesome flights, hotels, holidays, cabs, buses and cruise</p>
-
-            <div class="hero-tabs">
-                <span class="active"><i class="fa-solid fa-plane"></i> Flights</span>
-                <span><i class="fa-solid fa-hotel"></i> Hotels</span>
-                <span><i class="fa-solid fa-umbrella-beach"></i> Holidays</span>
-            </div>
-        </div>
-
-    </header>
-
-
-    <!-- ================= FLOATING SEARCH PANEL ================= -->
-    <section class="search-panel">
-        <div class="container">
-            <div class="search-box shadow-lg">
-                <div class="row g-3 align-items-center">
-
-                    <div class="col-md-3">
-                        <label>Destination</label>
-                        <input type="text" class="form-control" placeholder="Where are you going?">
+                <form id="authForm">
+                    <div class="row g-3 mb-3 signup-only">
+                        <div class="col-md-6">
+                            <label class="input-label">First Name</label>
+                            <div class="input-glow-container"><input type="text" class="auth-input form-control" placeholder="Tyler"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="input-label">Last Name</label>
+                            <div class="input-glow-container"><input type="text" class="auth-input form-control" placeholder="Durden"></div>
+                        </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label>Departure - Return</label>
-                        <input type="text" class="form-control" placeholder="Jul 07 - Aug 25">
+                    <div class="mb-3">
+                        <label class="input-label">Email Address</label>
+                        <div class="input-glow-container"><input type="email" class="auth-input form-control" placeholder="name@example.com"></div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label>Travellers</label>
-                        <input type="text" class="form-control" placeholder="1 Adult - 1 Child">
+                    <div class="mb-3">
+                        <label class="input-label">Password</label>
+                        <div class="input-glow-container">
+                            <input type="password" class="auth-input form-control" placeholder="••••••••">
+                        </div>
                     </div>
 
-                    <div class="col-md-3 d-grid">
-                        <button class="btn btn-primary btn-lg mt-4">Search</button>
+                    <div class="mb-4 signup-only">
+                        <label class="input-label">Confirm Password</label>
+                        <div class="input-glow-container">
+                            <input type="password" class="auth-input form-control" placeholder="••••••••">
+                        </div>
                     </div>
 
+                    <button type="submit" id="submitBtn" class="submit-glow-btn">Sign Up &rarr;</button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="footer-text mb-0">
+                        <span id="toggleText">Already have an account?</span>
+                        <a href="javascript:void(0)" id="toggleAuth" class="footer-link" onclick="handleAuthToggle()">Login</a>
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-</body>
-</html>
+<script>
+    function handleAuthToggle() {
+        const signupFields = document.querySelectorAll('.signup-only');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleText = document.getElementById('toggleText');
+        const toggleLink = document.getElementById('toggleAuth');
 
+        if (toggleLink.innerText.trim() === "Login") {
+            // SWITCH TO LOGIN
+            signupFields.forEach(f => f.style.setProperty('display', 'none', 'important'));
+            modalTitle.innerText = "Welcome Back";
+            modalSubtitle.innerText = "Log in to access your account.";
+            submitBtn.innerText = "Login →";
+            toggleText.innerText = "Don't have an account?";
+            toggleLink.innerText = "Sign Up";
+        } else {
+            // SWITCH TO SIGNUP
+            signupFields.forEach(f => f.style.setProperty('display', 'flex', 'important'));
+            modalTitle.innerText = "Create an Account";
+            modalSubtitle.innerText = "Join Memory Makers to start your journey.";
+            submitBtn.innerText = "Sign Up →";
+            toggleText.innerText = "Already have an account?";
+            toggleLink.innerText = "Login";
+        }
+    }
+
+    // Glow effect logic
+                document.addEventListener('DOMContentLoaded', function () {
+        // Track movement on the entire document for maximum responsiveness
+        document.addEventListener('mousemove', (e) => {
+            // Only run the logic if the modal is actually open/visible
+            const authModal = document.getElementById('authModal');
+            if (!authModal || !authModal.classList.contains('show')) return;
+
+            const containers = authModal.querySelectorAll('.input-glow-container');
+
+            containers.forEach(container => {
+                const rect = container.getBoundingClientRect();
+
+                // Precise coordinate calculation
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                container.style.setProperty('--mouse-x', `${x}px`);
+                container.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    });
+</script>

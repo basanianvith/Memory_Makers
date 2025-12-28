@@ -44,6 +44,9 @@ namespace TravelPackageManagementSystem.Controllers
         }
 
         public IActionResult TajMahal()
+
+        public IActionResult Host()
+        public IActionResult PaymentPage()
         {
             return View();
         }

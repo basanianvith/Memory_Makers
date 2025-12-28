@@ -48,7 +48,10 @@ namespace TravelPackageManagementSystem.Controllers
                 return View();
             }    
         public IActionResult GoaPack1()
-        
+        {
+            return View();
+        }
+
 
         public IActionResult Manali()
         {
@@ -56,6 +59,9 @@ namespace TravelPackageManagementSystem.Controllers
         }
 
         public IActionResult GoaPack2()
+        {
+            return View();
+        }
         public IActionResult Gangtok()
         {
             return View();
@@ -96,6 +102,9 @@ namespace TravelPackageManagementSystem.Controllers
         }
 
         public IActionResult TajMahal()
+        {
+            return View();
+        }
 
         public IActionResult PaymentPage()
         {

@@ -22,8 +22,28 @@ namespace TravelPackageManagementSystem.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Trending()
         public IActionResult Hero()
+        {
+            return View();
+        }
+        
+
+        public IActionResult Manali()
+        {
+            return View();
+        }
+
+        public IActionResult Gangtok()
+        {
+            return View();
+        }
+
+        public IActionResult Banaras()
+        {
+            return View();
+        }
+
+        public IActionResult TajMahal()
         {
             return View();
         }

@@ -3,22 +3,56 @@
     Layout = "_Layout"; // Ensures it uses your layout
 }
 
+<style>
+    /* 1. Fix the Confirm Password Label Alignment */
+    #authModal .input-label {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    /* 2. Target ONLY the footer inside the modal */
+    #authModal .footer-text {
+        color: rgba(255, 255, 255, 0.6) !important;
+        font-size: 0.9rem;
+    }
+
+    #authModal .footer-link {
+        color: #ffffff !important; /* Forces white only in the modal */
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        #authModal .footer-link:hover {
+            color: #00d2ff !important;
+            text-decoration: underline;
+        }
+
+    /* 3. Ensure inputs take full width */
+    #authModal .auth-input {
+        width: 100%;
+    }
+</style>
+
 <header class="header-wrapper">
     <div class="overlay"></div>
 
     <div class="top-bar">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4">
             <div class="top-left">
-                <i class="fa-solid fa-phone"></i> (+91) 9523267360
+                <i class="fa-solid fa-phone"></i> (+91) 9512535115
                 <span class="ms-3"><i class="fa-solid fa-envelope"></i> easysafar@gmail.com</span>
             </div>
             <div class="top-right">
                 <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter mx-3"></i>
+                <i class="fab fa-x mx-3"></i> 
                 <i class="fab fa-linkedin-in"></i>
 
                 <span class="ms-4 text-white" style="cursor: pointer;">
-                    Become a Host
+                    <a asp-controller="Home" asp-action="Host" class="text-white text-decoration-none">
+                        Become a Host
+                    </a>
                 </span>
 
                 <div id="authSection" class="d-inline-block ms-4">
@@ -31,7 +65,9 @@
                 </div>
 
                 <span class="ms-4 text-white" style="cursor: pointer;">
-                    Admin Login
+                    <a asp-controller="Admin" asp-action="Dashboard" class="text-white text-decoration-none">
+                        <i class="fa-solid fa-user-shield me-1"></i> Admin Login
+                    </a>
                 </span>
             </div>
         </div>
@@ -46,8 +82,8 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav gap-4">
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")#top-destinations">Holidays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Travel Guide</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Customer Support</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="TravelGuide">Travel Guide</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="CustomerSupport">Customer Support</a></li>
                 </ul>
             </div>
         </div>
@@ -126,7 +162,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4 signup-only">
+                    <div class="signup-only mb-4">
                         <label class="input-label">Confirm Password</label>
                         <div class="input-glow-container">
                             <input type="password" class="auth-input form-control" placeholder="••••••••">
@@ -148,7 +184,7 @@
 </div>
 
 <script>
-    function handleAuthToggle() {
+        function handleAuthToggle() {
         const signupFields = document.querySelectorAll('.signup-only');
         const modalTitle = document.getElementById('modalTitle');
         const modalSubtitle = document.getElementById('modalSubtitle');
@@ -157,7 +193,7 @@
         const toggleLink = document.getElementById('toggleAuth');
 
         if (toggleLink.innerText.trim() === "Login") {
-            // SWITCH TO LOGIN
+            // --- SWITCH TO LOGIN ---
             signupFields.forEach(f => f.style.setProperty('display', 'none', 'important'));
             modalTitle.innerText = "Welcome Back";
             modalSubtitle.innerText = "Log in to access your account.";
@@ -165,8 +201,15 @@
             toggleText.innerText = "Don't have an account?";
             toggleLink.innerText = "Sign Up";
         } else {
-            // SWITCH TO SIGNUP
-            signupFields.forEach(f => f.style.setProperty('display', 'flex', 'important'));
+            // --- SWITCH TO SIGNUP ---
+            signupFields.forEach(f => {
+                // Check if it's the Name row or the Password field
+                if (f.classList.contains('row')) {
+                    f.style.setProperty('display', 'flex', 'important');
+                } else {
+                    f.style.setProperty('display', 'block', 'important');
+                }
+            });
             modalTitle.innerText = "Create an Account";
             modalSubtitle.innerText = "Join Memory Makers to start your journey.";
             submitBtn.innerText = "Sign Up →";
@@ -175,11 +218,11 @@
         }
     }
 
-        document.getElementById('authForm').addEventListener('submit', function (e) {
+            document.getElementById('authForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
         const email = this.querySelector('input[type="email"]').value;
-        const password = this.querySelector('input[type="password"]').value;
+        const password = this.querySelector('input[placeholder="••••••••"]').value;
         const isLogin = document.getElementById('submitBtn').innerText.includes("Login");
 
         if (isLogin) {
@@ -189,17 +232,33 @@
             if (savedUser && savedUser.email === email && savedUser.password === password) {
                 alert("Login Successful! Welcome " + savedUser.firstName);
                 localStorage.setItem('isLoggedIn', 'true');
-                window.location.reload(); // Refresh to update UI
+                window.location.reload();
             } else {
                 alert("Invalid credentials or user does not exist.");
             }
         } else {
-            // --- MOCK SIGNUP LOGIC ---
+            // --- MOCK SIGNUP LOGIC WITH PASSWORD CHECK ---
             const firstName = this.querySelector('input[placeholder="Tyler"]').value;
+            const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+
+            // 1. Basic Validation
+            if (!firstName || !email || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // 2. Password Match Check
+            if (password !== confirmPassword) {
+                alert("Passwords do not match! Please try again.");
+                // Optional: Highlight the fields in red
+                this.querySelectorAll('input[type="password"]').forEach(i => i.style.borderColor = "red");
+                return;
+            }
+
             const user = {
                 firstName: firstName,
                 email: email,
-                password: password // In a real app, never store plain text passwords!
+                password: password
             };
 
             localStorage.setItem('user', JSON.stringify(user));

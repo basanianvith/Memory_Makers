@@ -25,7 +25,47 @@ namespace TravelPackageManagementSystem.Controllers
         public IActionResult Hero()
         {
             return View();
+        }   
+
+        public IActionResult Coorg()
+        {
+            return View();
         }
+        public IActionResult Vrindavan()
+        {
+            return View();
+        }
+        public IActionResult Rameshwaram()
+        {
+            return View();
+        }
+        public IActionResult Darjiling()
+        {
+            return View();
+        }
+        
+
+        // The individual detail page
+        public IActionResult Tamilnadu()
+        {
+            return View();
+        }
+        public IActionResult TamilnaduTD(string id)
+        {
+            ViewBag.PackageId = id;
+            return View();
+        }
+        public IActionResult KeralaTD(string id)
+        {
+            ViewBag.PackageId = id;
+            return View();
+        }
+        public IActionResult MizoramTD(string id)
+        {
+            ViewBag.PackageId = id;
+            return View();
+        }
+
 
         
            
@@ -52,6 +92,7 @@ namespace TravelPackageManagementSystem.Controllers
             return View();
         }
 
+        
 
         public IActionResult Manali()
         {

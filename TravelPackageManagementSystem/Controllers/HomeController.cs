@@ -48,11 +48,15 @@ namespace TravelPackageManagementSystem.Controllers
                 return View();
             }    
         public IActionResult GoaPack1()
+        
+
+        public IActionResult Manali()
         {
             return View();
         }
 
         public IActionResult GoaPack2()
+        public IActionResult Gangtok()
         {
             return View();
         }
@@ -86,6 +90,37 @@ namespace TravelPackageManagementSystem.Controllers
             return View();
         }
 
+        public IActionResult Banaras()
+        {
+            return View();
+        }
+
+        public IActionResult TajMahal()
+
+        public IActionResult PaymentPage()
+        {
+            return View();
+        }
+
+        public IActionResult Host()
+        {
+            return View();
+        }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public IActionResult TravelGuide()
+        {
+            return View();
+        }
+
+        public IActionResult CustomerSupport ()
+        {
+            return View();
+        }
     }
     }
 

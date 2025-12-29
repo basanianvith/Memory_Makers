@@ -31,6 +31,19 @@ namespace TravelPackageManagementSystem.Controllers
         {
             return View();
         }
+        public IActionResult Munnar()
+        {
+            return View();
+        }
+        public IActionResult Mumbai()
+        {
+            return View();
+        }
+       
+        public IActionResult Darjiling()
+        {
+            return View();
+        }
         public IActionResult Vrindavan()
         {
             return View();
@@ -39,14 +52,14 @@ namespace TravelPackageManagementSystem.Controllers
         {
             return View();
         }
-        public IActionResult Darjiling()
+        public IActionResult Manali()
         {
             return View();
         }
         
 
         // The individual detail page
-        public IActionResult Tamilnadu()
+        public IActionResult Goa()
         {
             return View();
         }
@@ -94,10 +107,7 @@ namespace TravelPackageManagementSystem.Controllers
 
         
 
-        public IActionResult Manali()
-        {
-            return View();
-        }
+       
 
         public IActionResult GoaPack2()
         {

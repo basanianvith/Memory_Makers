@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\NewFolder\**" />
+    <Compile Remove="Views\TopDestination\**" />
     <Content Remove="Controllers\NewFolder\**" />
+    <Content Remove="Views\TopDestination\**" />
     <EmbeddedResource Remove="Controllers\NewFolder\**" />
+    <EmbeddedResource Remove="Views\TopDestination\**" />
     <None Remove="Controllers\NewFolder\**" />
     <Compile Remove="Views\LandingPage\**" />
     <Compile Remove="wwwroot\lib\images\**" />
@@ -21,11 +24,20 @@
     <EmbeddedResource Remove="wwwroot\lib\images\**" />
     <None Remove="Controllers\NewFolder\**" />
     <None Remove="Views\LandingPage\**" />
+    <None Remove="Views\TopDestination\**" />
     <None Remove="wwwroot\lib\images\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\Demo.cshtml" />
     <Content Remove="Views\Home\LandingPage.cshtml" />
+    <Content Remove="Views\Home\SignUp.cshtml" />
+    <Content Remove="wwwroot\lib\Image\Amritsar.jpg" />
+    <Content Remove="wwwroot\lib\Image\Himachal Pradesh.jpg" />
+    <Content Remove="wwwroot\lib\Image\Jaipur.jpg" />
+    <Content Remove="wwwroot\lib\Image\kerala2.jpg" />
+    <Content Remove="wwwroot\lib\Image\Ladakh.jpg" />
+    <Content Remove="wwwroot\lib\Image\Vrindavan.jpg" />
   </ItemGroup>
 
 </Project>

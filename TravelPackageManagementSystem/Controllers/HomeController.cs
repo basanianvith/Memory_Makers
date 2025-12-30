@@ -146,6 +146,11 @@ namespace TravelPackageManagementSystem.Controllers
             return View();
         }
 
+        public IActionResult Jaipur()
+        {
+            return View();
+        }
+
         public IActionResult GoaPack3()
         {
             return View();

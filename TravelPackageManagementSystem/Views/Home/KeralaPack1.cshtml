@@ -44,7 +44,7 @@
 
                 <!-- IMAGE GALLERY -->
                 <div class="gallery" aria-label="Image gallery">
-                    <div id="mainImage" class="main-image" role="img" aria-label="Main image" style="background-image: url('/lib/Image/kerala1.jpg');"></div>
+                    <div id="mainImage" class="main-image" role="img" aria-label="Main image" style="background-image: url('/lib/Image/k2.jpg');"></div>
 
                     <div class="thumbs" role="list">
                         <button class="thumb active" role="listitem" type="button" data-src="/lib/Image/k2.jpg" style="background-image: url('/lib/Image/k2.jpg');" aria-label="Alleppey Houseboat"></button>
@@ -173,7 +173,7 @@
                         <input id="phone" name="Phone" type="tel" placeholder="+91 98765 43210" />
 
                         <div class="booking-cta" style="margin-top:8px;">
-                            <button type="submit" class="btn btn-primary" id="bookNowBtn">Book Now</button>
+                            <button type="submit" class="btn btn-primary" id="bookNowBtn" asp-controller="Home" asp-action="PaymentPage">Book Now</button>
                             
                         </div>
 
@@ -187,7 +187,63 @@
         </div>
     </div>
 
-    <script src="/js/Kerala.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // --- 1. IMAGE GALLERY LOGIC ---
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumb');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    const newSrc = this.getAttribute('data-src');
+                    if (mainImage && newSrc) {
+                        mainImage.style.backgroundImage = `url('${newSrc}')`;
+                    }
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // --- 2. ITINERARY DROPDOWN LOGIC ---
+            const dayHeaders = document.querySelectorAll('.day-header');
+
+            dayHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    // Find the content div (day-body) directly after the header
+                    const body = this.nextElementSibling;
+                    const toggleSign = this.querySelector('.toggle');
+
+                    // Toggle visibility
+                    if (body.style.display === "block") {
+                        body.style.display = "none";
+                        if (toggleSign) toggleSign.textContent = "+";
+                    } else {
+                        body.style.display = "block";
+                        if (toggleSign) toggleSign.textContent = "-";
+                    }
+                });
+            });
+
+            // --- 3. PRICE UPDATE LOGIC (Optional but recommended) ---
+            const guestSelect = document.getElementById('guests');
+            const priceSummary = document.getElementById('priceSummary');
+            const totalPayableDisplay = document.getElementById('totalPayable');
+            const basePrice = 14500;
+            const taxPerPerson = 1450;
+
+            if(guestSelect) {
+                guestSelect.addEventListener('change', function() {
+                    const count = parseInt(this.value);
+                    const total = (basePrice + taxPerPerson) * count;
+
+                    // Update text
+                    if (priceSummary) priceSummary.textContent = `${count} ${count > 1 ? 'persons' : 'person'}`;
+                    if (totalPayableDisplay) totalPayableDisplay.textContent = `₹${total.toLocaleString('en-IN')}`;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

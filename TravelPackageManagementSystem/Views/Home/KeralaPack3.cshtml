@@ -44,7 +44,7 @@
 
                 <!-- IMAGE GALLERY -->
                 <div class="gallery" aria-label="Image gallery">
-                    <div id="mainImage" class="main-image" role="img" aria-label="Main image" style="background-image: url('/lib/Image/kovalam1.jpg');"></div>
+                    <div id="mainImage" class="main-image" role="img" aria-label="Main image" style="background-image: url('/lib/Image/k32.jpg');"></div>
 
                     <div class="thumbs" role="list">
                         <button class="thumb active" role="listitem" type="button" data-src="/lib/Image/k32.jpg" style="background-image: url('/lib/Image/k32.jpg');" aria-label="Kovalam Lighthouse Beach"></button>
@@ -173,8 +173,7 @@
                         <input id="phone" name="Phone" type="tel" placeholder="+91 98765 43210" />
 
                         <div class="booking-cta" style="margin-top:8px;">
-                            <button type="submit" class="btn btn-primary" id="bookNowBtn">Book Now</button>
-                            <button type="button" class="btn btn-secondary" id="loginBtn" onclick="location.href='/Account/Login'">Login</button>
+                            <button type="submit" class="btn btn-primary" id="bookNowBtn" asp-controller="Home" asp-action="PaymentPage">Book Now</button>
                         </div>
 
                         <p style="font-size:13px; color:#666; margin-top:8px;">
@@ -187,7 +186,74 @@
         </div>
     </div>
 
-    <script src="/js/PackTD.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // --- 1. IMAGE SELECTION LOGIC ---
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumb');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    // Gets the path from your data-src attribute
+                    const newSrc = this.getAttribute('data-src');
+
+                    if (mainImage && newSrc) {
+                        // Updates the background image of the main div
+                        mainImage.style.backgroundImage = `url('${newSrc}')`;
+                    }
+
+                    // Update the active border highlight
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // --- 2. ITINERARY DROPDOWN LOGIC ---
+            const dayHeaders = document.querySelectorAll('.day-header');
+
+            dayHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    // Finds the .day-body div immediately following the header
+                    const body = this.nextElementSibling;
+                    const toggleIcon = this.querySelector('.toggle');
+
+                    // Toggle logic
+                    if (body.style.display === "block") {
+                        body.style.display = "none";
+                        if (toggleIcon) toggleIcon.textContent = "+";
+                    } else {
+                        body.style.display = "block";
+                        if (toggleIcon) toggleIcon.textContent = "-";
+                    }
+                });
+            });
+
+            // --- 3. PRICE CALCULATION LOGIC ---
+            const guestSelect = document.getElementById('guests');
+            const priceSummary = document.getElementById('priceSummary');
+            const totalPayableDisplay = document.getElementById('totalPayable');
+
+            // Base values from your HTML (₹13,500 + ₹1,350)
+            const basePrice = 13500;
+            const taxPerPerson = 1350;
+
+            if (guestSelect) {
+                guestSelect.addEventListener('change', function () {
+                    const count = parseInt(this.value);
+                    const total = (basePrice + taxPerPerson) * count;
+
+                    // Update the summary text and total price
+                    if (priceSummary) {
+                        priceSummary.textContent = `${count} ${count > 1 ? 'persons' : 'person'}`;
+                    }
+                    if (totalPayableDisplay) {
+                        totalPayableDisplay.textContent = `₹${total.toLocaleString('en-IN')}`;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

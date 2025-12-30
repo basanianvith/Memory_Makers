@@ -12,7 +12,6 @@
 </head>
 <body>
 
-    <!-- HERO IMAGE -->
     <section class="hero">
         <img class="hero-img" src="/lib/Image/m1.jpg" alt="Aizawl City" />
         <div class="hero-content">
@@ -24,7 +23,6 @@
     <div class="container">
         <div class="flex">
 
-            <!-- LEFT -->
             <div class="left-col">
                 <div class="package-header">
                     <div class="package-title">
@@ -37,9 +35,8 @@
                     </div>
                 </div>
 
-                <!-- GALLERY -->
                 <div class="gallery">
-                    <div id="mainImage" class="main-image" style="background-image:url('/lib/Image/aizawl1.jpg');"></div>
+                    <div id="mainImage" class="main-image" style="background-image:url('/lib/Image/m2.jpg');"></div>
                     <div class="thumbs">
                         <button class="thumb active" data-src="/lib/Image/m2.jpg" style="background-image:url('/lib/Image/m2.jpg');"></button>
                         <button class="thumb" data-src="/lib/Image/m3.jpg" style="background-image:url('/lib/Image/m3.jpg');"></button>
@@ -48,44 +45,159 @@
                     </div>
                 </div>
 
-                <!-- OVERVIEW -->
                 <div style="margin-top:16px;">
                     <h3>Overview</h3>
-                    <p>Explore Mizoram’s capital city Aizawl, vibrant markets, Solomon’s Temple, and panoramic views from Durtlang Hills.</p>
+                    <p>
+                        Explore Mizoram’s capital city Aizawl, vibrant markets like Bara Bazar, the architectural marvel Solomon’s Temple,
+                        and breathtaking panoramic views from the Durtlang Hills.
+                    </p>
                 </div>
 
-                <!-- ITINERARY -->
                 <div class="itinerary">
                     <h3>Day-by-Day Itinerary</h3>
-                    <div class="day"><h4>Day 1 — Arrival & City Tour</h4><p>Visit Bara Bazar, Solomon’s Temple.</p></div>
-                    <div class="day"><h4>Day 2 — Durtlang Hills</h4><p>Scenic drive, Mizoram State Museum.</p></div>
-                    <div class="day"><h4>Day 3 — Departure</h4><p>Morning walk, transfer onward.</p></div>
+
+                    <div class="day">
+                        <div class="day-header">
+                            <h4>Day 1 — Arrival & City Tour</h4>
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="day-body">
+                            <p>Arrival at Lengpui Airport. Transfer to hotel. Afternoon visit to Solomon’s Temple and a walking tour of Bara Bazar for local shopping.</p>
+                        </div>
+                    </div>
+
+                    <div class="day">
+                        <div class="day-header">
+                            <h4>Day 2 — Durtlang Hills</h4>
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="day-body">
+                            <p>Scenic morning drive to Durtlang Hills. Visit the Mizoram State Museum to learn about Mizo culture and visit the KV Paradise memorial.</p>
+                        </div>
+                    </div>
+
+                    <div class="day">
+                        <div class="day-header">
+                            <h4>Day 3 — Departure</h4>
+                            <span class="toggle">+</span>
+                        </div>
+                        <div class="day-body">
+                            <p>Final morning breakfast. Last-minute souvenir shopping at the local markets before transfer to the airport for departure.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- PRICING -->
                 <div class="price-card">
-                    <div class="price-row"><div>Base Price (per person)</div><div class="price-total">₹10,999</div></div>
-                    <div class="price-row"><div>Taxes & Fees</div><div>₹1,100</div></div>
-                    <div class="price-row"><div>Total Payable</div><div class="price-total">₹12,099</div></div>
+                    <div class="price-row">
+                        <div>Base Price (per person)</div>
+                        <div class="price-total">₹10,999</div>
+                    </div>
+                    <div class="price-row">
+                        <div>Taxes & Fees</div>
+                        <div>₹1,100</div>
+                    </div>
+                    <div class="price-row">
+                        <div>Selected Guests</div>
+                        <div id="priceSummary">1 person</div>
+                    </div>
+                    <hr style="margin:10px 0; border:none; border-top:1px solid #eee;" />
+                    <div style="font-weight:700; display:flex; justify-content:space-between;">
+                        <div>Total Payable</div>
+                        <div class="price-total" id="totalPayable">₹12,099</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- RIGHT / BOOKING -->
             <div class="right-col">
                 <aside class="booking-box">
                     <h3>Book This Package</h3>
-                    <form method="post" action="/Booking/Start">
-                        <label>Travel Date</label><input type="date" required />
-                        <label>Guests</label><select id="guests"><option>1</option><option>2</option></select>
-                        <label>Email</label><input type="email" required />
-                        <label>Phone</label><input type="tel" />
-                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    <form id="bookingForm" method="post" action="/Home/PaymentPage">
+                        <label>Travel Date</label>
+                        <input type="date" required />
+
+                        <label>Guests</label>
+                        <select id="guests">
+                            <option value="1">1 person</option>
+                            <option value="2">2 persons</option>
+                            <option value="3">3 persons</option>
+                            <option value="4">4 persons</option>
+                        </select>
+
+                        <label>Contact Email</label>
+                        <input type="email" placeholder="you@example.com" required />
+
+                        <label>Phone</label>
+                        <input type="tel" placeholder="+91 00000 00000" />
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Book Now</button>
                     </form>
                 </aside>
             </div>
         </div>
     </div>
 
-    <script src="/js/MizoPack1.js"></script>
+    <div id="lightbox" class="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center;">
+        <img id="lightboxImg" src="" style="max-width:90%; max-height:80%;" />
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 1. GALLERY & LIGHTBOX
+            const main = document.getElementById('mainImage');
+            const thumbs = document.querySelectorAll('.thumb');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+
+            thumbs.forEach(t => {
+                t.addEventListener('click', () => {
+                    thumbs.forEach(x => x.classList.remove('active'));
+                    t.classList.add('active');
+                    const src = t.getAttribute('data-src');
+                    main.style.backgroundImage = `url('${src}')`;
+                });
+            });
+
+            main.addEventListener('click', () => {
+                const currentBg = main.style.backgroundImage.slice(5, -2).replace(/"/g, "");
+                lightboxImg.src = currentBg;
+                lightbox.style.display = 'flex';
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+
+            // 2. ITINERARY DROPDOWN
+            const headers = document.querySelectorAll('.day-header');
+            headers.forEach(h => {
+                h.addEventListener('click', () => {
+                    const body = h.nextElementSibling;
+                    const toggle = h.querySelector('.toggle');
+
+                    if (body.style.display === "block") {
+                        body.style.display = "none";
+                        toggle.textContent = "+";
+                    } else {
+                        body.style.display = "block";
+                        toggle.textContent = "-";
+                    }
+                });
+            });
+
+            // 3. PRICE UPDATE (Base 10,999 + Tax 1,100)
+            const guestSelect = document.getElementById('guests');
+            const totalDisplay = document.getElementById('totalPayable');
+            const summaryDisplay = document.getElementById('priceSummary');
+            const basePrice = 10999;
+            const taxes = 1100;
+
+            guestSelect.addEventListener('change', function() {
+                const count = parseInt(this.value);
+                const total = (basePrice + taxes) * count;
+                summaryDisplay.textContent = count + (count > 1 ? " persons" : " person");
+                totalDisplay.textContent = "₹" + total.toLocaleString('en-IN');
+            });
+        });
+    </script>
 </body>
 </html>
